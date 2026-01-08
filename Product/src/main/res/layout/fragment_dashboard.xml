@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.dashboard.DashboardFragment">
+
+    <TextView
+        android:id="@+id/textViewMerchandiseName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Item:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5"/>
+
+    <MultiAutoCompleteTextView
+        android:id="@+id/multiAutoCompleteTextViewMerchandiseName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Select items"
+        android:inputType="textMultiLine"
+        android:completionThreshold="1"
+        app:layout_constraintStart_toEndOf="@+id/textViewMerchandiseName"
+        app:layout_constraintTop_toTopOf="@+id/textViewMerchandiseName"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewMerchandiseName"
+        app:layout_constraintEnd_toStartOf="@+id/buttonMerchandiseNameQuery"
+        app:layout_constraintHorizontal_bias="0.5"/>
+
+    <Button
+        android:id="@+id/buttonMerchandiseNameQuery"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="10dp"
+        android:padding="1dp"
+        android:text="Search"
+        android:textSize="8dp"
+        app:layout_constraintStart_toEndOf="@+id/multiAutoCompleteTextViewMerchandiseName"
+        app:layout_constraintTop_toTopOf="@+id/multiAutoCompleteTextViewMerchandiseName"
+        app:layout_constraintBottom_toBottomOf="@+id/multiAutoCompleteTextViewMerchandiseName"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/textViewMerchandiseType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Item Type:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMerchandiseName"
+        app:layout_constraintVertical_bias="0.5"/>
+
+    <MultiAutoCompleteTextView
+        android:id="@+id/multiAutoCompleteTextViewMerchandiseType"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Select items"
+        android:inputType="textMultiLine"
+        android:completionThreshold="1"
+        app:layout_constraintStart_toEndOf="@+id/textViewMerchandiseType"
+        app:layout_constraintTop_toTopOf="@+id/textViewMerchandiseType"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewMerchandiseType"
+        app:layout_constraintEnd_toStartOf="@+id/buttonMerchandiseTypeQuery"
+        app:layout_constraintHorizontal_bias="0.5"/>
+
+    <Button
+        android:id="@+id/buttonMerchandiseTypeQuery"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="10dp"
+        android:padding="1dp"
+        android:text="Search"
+        android:textSize="8dp"
+        app:layout_constraintStart_toEndOf="@+id/multiAutoCompleteTextViewMerchandiseType"
+        app:layout_constraintTop_toTopOf="@+id/multiAutoCompleteTextViewMerchandiseType"
+        app:layout_constraintBottom_toBottomOf="@+id/multiAutoCompleteTextViewMerchandiseType"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <TextView
+        android:id="@+id/textViewPieChartLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="20dp"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:text="Items Type Chart:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMerchandiseType" />
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pieChart"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPieChartLabel" />
+
+    <ListView
+        android:id="@+id/listViewTransaction"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pieChart"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

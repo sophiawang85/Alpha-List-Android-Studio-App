@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AlphaList</string>
+    <string name="title_home">Shopping</string>
+    <string name="title_dashboard">History</string>
+</resources>

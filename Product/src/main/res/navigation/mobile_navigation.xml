@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.alphalist.ui.home.HomeFragment"
+        android:label="Shopping Groups"
+        tools:layout="@layout/fragment_home" >
+
+        <action
+            android:id="@+id/action_create_new_shopping_group"
+            app:destination="@id/navigation_shopping_group_detail" />
+
+        <action
+            android:id="@+id/action_edit_shopping_list"
+            app:destination="@id/navigation_shopping_list">
+            <argument
+                android:name ="selected"
+                app:argType="com.example.alphalist.model.ItemsList" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_shopping_group_detail"
+        android:name="com.example.alphalist.ui.cat.CatFragment"
+        android:label="Shopping Category"
+        tools:layout="@layout/fragment_newcat" />
+
+    <fragment
+        android:id="@+id/navigation_shopping_list"
+        android:name="com.example.alphalist.ui.it.ItemListFragment"
+        android:label="Shopping Items"
+        tools:layout="@layout/fragment_item_list" >
+
+        <action
+            android:id="@+id/action_add_merchandise_to_shopping_group"
+            app:destination="@id/navigation_merchandise_detail" />
+        <!--
+                <action
+                    android:id="@+id/action_edit_merchandise_in_shopping_group"
+                    app:destination="@id/navigation_merchandise_detail" >
+
+                    <argument
+                        android:name="selectedShoppingGroup"
+                        app:argType="com.example.alphalist.model.ShoppingGroupWithMerchandise" />
+
+                    <argument
+                        android:name="selectedMerchandise"
+                        app:argType="com.example.alphalist.model.Merchandise" />
+
+                    <argument
+                        android:name="merchandiseTypes"
+                        app:argType="java.util.List&lt;java.lang.String&gt;" />
+                </action>
+        -->
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_merchandise_detail"
+        android:name="com.example.alphalist.ui.newitem.NewItemFragment"
+        android:label="Item"
+        tools:layout="@layout/fragment_new_item" />
+
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.example.alphalist.ui.dashboard.DashboardFragment"
+        android:label="History"
+        tools:layout="@layout/fragment_dashboard" />
+
+</navigation>
