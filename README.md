@@ -75,6 +75,3 @@ The source and APK are archived artifacts; a successful clean build and device r
 
 The database uses `fallbackToDestructiveMigration()`, so upgrading its schema without a migration can clear saved data. Included tests are Android Studio template examples. The original cover page references documentation and a video that are not included in this GitHub checkout; local `file://` links cannot be opened by other visitors.
 
-## Author
-
-[Sihan Wang](https://github.com/sophiawang85)
