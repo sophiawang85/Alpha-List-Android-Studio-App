@@ -33,45 +33,46 @@ Fragments ↔ ViewModels / LiveData ↔ Repositories / DAOs ↔ Room
 
 | Location | Contents |
 | --- | --- |
-| [Product/src](Product/src) | Browsable source and Android resources |
-| [Product/AlphaList.zip](Product/AlphaList.zip) | Android Studio project archive, including Gradle files and wrapper |
-| [Product/app-debug.apk](Product/app-debug.apk) | Existing debug APK |
-| [cover page.htm](cover%20page.htm) | Original project cover page |
+| [app/src](app/src) | Application source, resources, and tests |
+| [app/build.gradle.kts](app/build.gradle.kts) | Android app configuration and dependencies |
+| [gradle/wrapper](gradle/wrapper) | Gradle wrapper for reproducible tooling |
+| [artifacts](artifacts) | Original debug APK and its output metadata |
+| [docs/cover-page.htm](docs/cover-page.htm) | Original project cover page |
 
-Key Java files live under `Product/src/main/java/com/example/alphalist/`:
+Key Java files live under `app/src/main/java/com/example/alphalist/`:
 
-- [ShoppingDatabase.java](Product/src/main/java/com/example/alphalist/ShoppingDatabase.java): Room database and DAO access.
-- [model](Product/src/main/java/com/example/alphalist/model): shopping groups, items, and transactions.
-- [ui/it/ItemListFragment.java](Product/src/main/java/com/example/alphalist/ui/it/ItemListFragment.java): the selected group's items.
-- [ui/dashboard/DashboardFragment.java](Product/src/main/java/com/example/alphalist/ui/dashboard/DashboardFragment.java): history sorting and spending visualization.
-- [ui/adapter](Product/src/main/java/com/example/alphalist/ui/adapter): list and history adapters.
+- [ShoppingDatabase.java](app/src/main/java/com/example/alphalist/ShoppingDatabase.java): Room database and DAO access.
+- [model](app/src/main/java/com/example/alphalist/model): shopping groups, items, and transactions.
+- `items/`, `io/cat/`, and `transaction/`: existing DAO and repository packages for items, groups, and purchases.
+- [ui/it/ItemListFragment.java](app/src/main/java/com/example/alphalist/ui/it/ItemListFragment.java): the selected group's items.
+- [ui/dashboard/DashboardFragment.java](app/src/main/java/com/example/alphalist/ui/dashboard/DashboardFragment.java): history sorting and spending visualization.
+- [ui/adapter](app/src/main/java/com/example/alphalist/ui/adapter): list and history adapters.
 
 ## Open and run
 
-The repository root is a project submission bundle. **Open the extracted project archive in Android Studio**, rather than opening the repository root as a Gradle project.
+The repository root is the Android Studio project; no ZIP extraction is needed.
 
 ```bash
 git clone https://github.com/sophiawang85/Alpha-List-Android-Studio-App.git
 cd Alpha-List-Android-Studio-App
-unzip Product/AlphaList.zip -d extracted
 ```
 
-1. Open `extracted/AlphaList` in Android Studio.
+1. Open the repository root in Android Studio.
 2. Use JDK 17 for Android Gradle Plugin 8.2.2 and install Android SDK 34.
 3. Let Gradle sync. Dependency repositories include Google, Maven Central, and JitPack.
 4. Select an emulator or device, then run the `app` configuration.
 
-The archived configuration compiles/targets SDK 34 and declares minimum SDK 19. **Use API 24 or newer for initial testing:** parts of the item-list implementation use Java streams behind an Android N check, with incomplete handling for older devices.
+The project configuration compiles/targets SDK 34 and declares minimum SDK 19. **Use API 26 or newer for initial testing:** list and dashboard code uses Java streams (API 24), and purchase recording is guarded by an API 26 check. Older-device handling is incomplete.
 
-From the extracted project directory, the debug build command is:
+From the repository root, the debug build command is:
 
 ```bash
-bash gradlew assembleDebug
+./gradlew assembleDebug
 ```
 
-The source and APK are archived artifacts; a successful clean build and device run have not been verified here.
+The APK in `artifacts/` is the original submission build, not a newly built release. The extracted project passed `./gradlew assembleDebug testDebugUnitTest` with JDK 17 and Android SDK 34. The included unit test is a template arithmetic test; device behavior has not been verified. Existing Room compiler warnings concern a missing foreign-key index, a relation query without `@Transaction`, and missing schema export configuration.
 
 ## Current scope
 
-The database uses `fallbackToDestructiveMigration()`, so upgrading its schema without a migration can clear saved data. Included tests are Android Studio template examples. The original cover page references documentation and a video that are not included in this GitHub checkout; local `file://` links cannot be opened by other visitors.
+The database uses `fallbackToDestructiveMigration()`, so upgrading its schema without a migration can clear saved data. Included tests are Android Studio template examples. The original cover page references documentation and a video that are not included in this GitHub checkout; those documentation links remain unavailable.
 
